@@ -7,39 +7,41 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!---->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
     </head>
-    <body>
-        <div class="jumbotron">
-            <div class="container text-center">
-                <h1>WpółDoKotleta</h1>
-                <p>Przepisy, dania, gotowe pomysły!</p>
+    <body ng-app="myApp">
+            <nav class="navbar navbar-inverse navbar-fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#/main">WpolDoKotleta</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Przepisy
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Ala Trello</a></li>
+                                <li><a href="#">Ala blogger</a></li>
+                                <li><a href="#">Ala janusz</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#/ulubione">Ulubione</a></li>
+                        <li><a href="#/menuUzytkownika">Custom menu</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/zarejestruj"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="#/zaloguj"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="jumbotron">
+                <div class="container text-center">
+                    <h1>WpółDoKotleta</h1>
+                    <p>Przepisy, dania, gotowe pomysły!</p>
+                </div>
             </div>
-        </div>
-        <div style="margin:auto;width:70%">
-            <div class="form-group">
-                <label for="products">Posiadane produkty:</label>
-                <input type="text" class="form-control" id="products">
-            </div>
-            <button type="button" id="btn">testuj</button>
-            <p><a href="zaloguj.html"> Aby uzyskać dodatkowe opcje zaloguj się!</a></p>
-        </div>
-        <div style="margin:auto; width:70%;">
-            <div class="list-group">
-                <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Przepis numer 1</h4>
-                    <p class="list-group-item-text" id="recipe"></p>
-                </a>
-                <!--<a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Przepis numer 2</h4>
-                    <p class="list-group-item-text">Krótki opis przepisu</p>
-                </a>
-                <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Przepis numer 3</h4>
-                    <p class="list-group-item-text">Krótki opis przepisu</p>
-                </a>-->
-            </div>
-        </div><!-- /.col-sm-4 -->
-        <script src="./przepisy.js"></script>
+            <div ng-view></div>
+            <script src="przepisy.js"></script>
     </body>
 </html>

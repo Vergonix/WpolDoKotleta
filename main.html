@@ -1,0 +1,22 @@
+<div style="margin:auto;width:70%">
+    <div class="form-group">
+        <label for="products">Posiadane produkty:</label>
+        <input type="text" class="form-control" id="products" ng-model="userInput" ng-change='sprawdz()'>
+    </div>
+</div>
+<div style="margin:auto; width:70%;">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default" ng-repeat="p in przepisy">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{p.name}}</a>
+                </h4>
+            </div>
+            <div id="collapse{{$index}}" class="panel-collapse collapse">
+                <div class="panel-body">{{p.desc}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
