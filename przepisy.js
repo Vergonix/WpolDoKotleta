@@ -12,7 +12,8 @@ app.config(['$routeProvider', function($routeProvider){
             templateUrl: "zaloguj.html"
         })
         .when("/zarejestruj", {
-            templateUrl: "zarejestruj.html"
+            templateUrl: "zarejestruj.html",
+            controller: "myCtrl"
         })
         .when("/ulubione", {
             templateUrl: "ulubione.html"
@@ -24,11 +25,24 @@ app.config(['$routeProvider', function($routeProvider){
             redirectTo: $routeProvider});
 }]);
 
-app.controller("myCtrl", function($scope, $http) {
+app.controller("myCtrl", function($scope, $http, $location) {
     $scope.sprawdz = function() {
         var cokolwiek = $("#products").val();
         $http.get(url + '&query=' + cokolwiek + '&key=' + apiKey).then(function(response) {
             $scope.przepisy = response.data.cards;
         });
+    }
+    $scope.insertData = function() {
+        if ($scope.password != $scope.repassword) {
+            $scope.help = "Podane hasła nie są identyczne, spróbuj jeszcze raz!";
+        } else {
+            $http.post('zarejestruj.php', {
+                'email': $scope.email,
+                'password': $scope.password
+            }).success(function() {
+                alert("Rejestracja powiodła się!");
+                $location.url("/zaloguj");
+            });
+        }
     }
 });
