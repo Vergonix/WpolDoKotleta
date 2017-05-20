@@ -9,7 +9,8 @@ app.config(['$routeProvider', function($routeProvider){
             controller: "myCtrl"
         })
         .when("/zaloguj", {
-            templateUrl: "zaloguj.html"
+            templateUrl: "zaloguj.html",
+            controller: "myCtrl"
         })
         .when("/zarejestruj", {
             templateUrl: "zarejestruj.html",
@@ -44,5 +45,20 @@ app.controller("myCtrl", function($scope, $http, $location) {
                 $location.url("/zaloguj");
             });
         }
+    }
+
+    $scope.checkData = function() {
+        $http.post('zaloguj.php', {
+            'email': $scope.email,
+            'password': $scope.password
+        });
+        $.get("http://v-ie.uek.krakow.pl/~s187805/WpolDoKotleta/zaloguj.php", function(data) {
+            var response = data;
+            if(response == "Podano błędne hasło lub email") {
+                alert(response);
+            } else {
+                sessionStorage.setItem("email", response);
+            }
+        })
     }
 });
