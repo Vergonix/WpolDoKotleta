@@ -1,1 +1,14 @@
-<h1> menu ze tak powiem </h1>
+<div style="margin:auto; width:70%;">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default" ng-repeat="p in przepisy">
+            <div class="panel-heading" style="background-color: cadetblue">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{p.name}}</a>
+                </h4>
+            </div>
+            <div id="collapse{{$index}}" class="panel-collapse collapse" style="background-color: lightgray">
+                <div class="panel-body">{{p.desc}}</div>
+            </div>
+        </div>
+    </div>
+</div>

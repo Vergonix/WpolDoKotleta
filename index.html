@@ -10,24 +10,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
     </head>
-    <body ng-app="myApp">
+    <body ng-app="myApp" style="background: #a2836e">
             <nav class="navbar navbar-inverse navbar-fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#/main">WpolDoKotleta</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Przepisy
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Ala Trello</a></li>
-                                <li><a href="#">Ala blogger</a></li>
-                                <li><a href="#">Ala janusz</a></li>
-                            </ul>
-                        </li>
                         <li><a href="#/ulubione">Ulubione</a></li>
-                        <li><a href="#/menuUzytkownika">Custom menu</a></li>
+                        <li><a href="#/menuUzytkownika" ng-click="displayMenu()">Custom menu</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#/zarejestruj"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -35,8 +26,8 @@
                     </ul>
                 </div>
             </nav>
-            <div class="jumbotron">
-                <div class="container text-center">
+            <div class="jumbotron" style="background-color: #674d3c">
+                <div class="container text-center" style="color: #fff2df">
                     <h1>WpółDoKotleta</h1>
                     <p>Przepisy, dania, gotowe pomysły!</p>
                 </div>
