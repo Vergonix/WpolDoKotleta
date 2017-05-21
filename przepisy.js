@@ -1,6 +1,7 @@
 var url = 'https://api.trello.com/1/search?idBoards=54ad9476179886c979b60080';
 var apiKey = '4cc334d87ada29b1884404fe3f30956a';
-var n = 1, m = 1;
+var n = 1;
+var dishes = "";
 
 var app = angular.module("myApp", ['ngRoute']);
 app.config(['$routeProvider', function($routeProvider){
@@ -22,7 +23,8 @@ app.config(['$routeProvider', function($routeProvider){
             controller: "myCtrl"
         })
         .when("/menuUzytkownika", {
-            templateUrl: "menuUzytkownika.html"
+            templateUrl: "menuUzytkownika.html",
+            controller: "myCtrl"
         })
         .when("/zalogujSie", {
             templateUrl: "zalogujSie.html"
@@ -108,10 +110,11 @@ app.controller("myCtrl", function($scope, $http, $location) {
             n++;
         }
     }
+
     $scope.displayMenu = function() {
-        while(sessionStorage.getItem("infiniteScrollEnabled") === null) {
-            console.log(m + ") " + sessionStorage.getItem("danie" + m));
-            m++;
+        for(var i=0; i<=(n-2); i++) {
+            dishes += ("- " + sessionStorage.getItem("danie" + (i+1)) + "<br>");
         }
+        $("#menuList").html(dishes);
     }
 });

@@ -1,13 +1,20 @@
-<div style="margin:auto; width:70%;">
+<div style="margin:auto;width:70%" >
+    <div class="form-group">
+        <label for="menu">Podaj nazwe nowego menu zawierającego wybrane wcześniej produkty</label>
+        <input type="text" class="form-control" id="menu" ng-model="menuName">
+        <input type="submit" class="btn btn-success" ng-click="displayMenu()" style="margin-top: 20px" value="Dodaj wybrane produkty">
+    </div>
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default" ng-repeat="p in przepisy">
-            <div class="panel-heading" style="background-color: cadetblue">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: #d9ad7c" >
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{p.name}}</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{menuName}}</a>
                 </h4>
             </div>
-            <div id="collapse{{$index}}" class="panel-collapse collapse" style="background-color: lightgray">
-                <div class="panel-body">{{p.desc}}</div>
+            <div id="collapse{{$index}}" class="panel-collapse collapse" style="background-color: #fff2df">
+                <div class="panel-body">
+                    <p id="menuList"></p>
+                </div>
             </div>
         </div>
     </div>

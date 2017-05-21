@@ -1,4 +1,4 @@
-<div style="margin:auto;width:70%">
+<div style="margin:auto;width:70%" >
     <div class="form-group">
         <label for="products">Posiadane produkty:</label>
         <input type="text" class="form-control" id="products" ng-model="userInput" ng-change='sprawdz()'>
@@ -9,7 +9,7 @@
         <div class="panel panel-default" ng-repeat="p in przepisy">
             <div class="panel-heading" style="background-color: #d9ad7c">
                 <a class="glyphicon glyphicon-star" style="color:gold" ng-click="addToFav(p.name)"></a>
-                <a href="#/menuUzytkownika" class="glyphicon glyphicon-plus-sign" style="color: green" ng-click="addToMenu(p.name)"></a>
+                <a class="glyphicon glyphicon-plus-sign" style="color: green" ng-click="addToMenu(p.name)"></a>
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">{{p.name}}</a>
                 </h4>
