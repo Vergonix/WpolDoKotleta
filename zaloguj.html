@@ -1,22 +1,23 @@
-<div style="margin:auto;width:40%">
-    <form class="form-horizontal">
+<form class="form-horizontal">
+    <div style="margin:auto;width:40%">
         <div class="form-group">
             <label for="email" class="col-md-4 control-label" style="width:150px">Adres E-mail</label>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="email" type="text" class="form-control" name="email" placeholder="Email" ng-model='email'>
+                <input id="email1" type="text" class="form-control" name="email1" placeholder="Email" ng-model="user">
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="col-md-4 control-label" style="width:150px">Hasło</label>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="password" type="password" class="form-control" name="password" placeholder="Hasło" ng-model='password'>
+                <input id="password1" type="password" class="form-control" name="password1" placeholder="Hasło" ng-model="pwd">
             </div>
         </div>
-        <p style="margin: auto; width: 55%; padding-bottom: 10px"><a href="#/zarejestruj"> Kliknij aby założyć darmowe konto!</a></p>
+        <p style="margin: auto; width: 55%; padding-bottom: 10px"><a href="#/zarejestruj">Kliknij aby założyć darmowe konto!</a></p>
+        <p class="col-md-offset-4" ng-bind="error"></p>
         <div class="col-md-offset-3 col-md-2">
-            <input type="button" value="Zaloguj" class="btn btn-default" ng-click="checkData()">
+            <input type="button" value="Zaloguj" class="btn btn-default" ng-click="login()">
         </div>
-    </form>
-</div>
+    </div>
+</form>

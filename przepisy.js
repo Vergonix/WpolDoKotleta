@@ -18,10 +18,14 @@ app.config(['$routeProvider', function($routeProvider){
             controller: "myCtrl"
         })
         .when("/ulubione", {
-            templateUrl: "ulubione.html"
+            templateUrl: "ulubione.html",
+            controller: "myCtrl"
         })
         .when("/menuUzytkownika", {
             templateUrl: "menuUzytkownika.html"
+        })
+        .when("/zalogujSie", {
+            templateUrl: "zalogujSie.html"
         })
         .otherwise({
             redirectTo: $routeProvider});
@@ -29,8 +33,8 @@ app.config(['$routeProvider', function($routeProvider){
 
 app.controller("myCtrl", function($scope, $http, $location) {
     $scope.sprawdz = function() {
-        var cokolwiek = $("#products").val();
-        $http.get(url + '&query=' + cokolwiek + '&key=' + apiKey).then(function(response) {
+        var ingredient = $("#products").val();
+        $http.get(url + '&query=' + ingredient + '&key=' + apiKey).then(function(response) {
             $scope.przepisy = response.data.cards;
         });
     }
@@ -48,27 +52,55 @@ app.controller("myCtrl", function($scope, $http, $location) {
         }
     }
 
-    $scope.checkData = function() {
-        $http.post('test.php', {
-            'username': $scope.email,
-            'pass': $scope.password
+    $scope.login = function() {
+        var parameter = JSON.stringify({user: $scope.user, pass: $scope.pwd});
+        
+        $http.post('zaloguj.php', parameter).then(function(response) {
+            if (response.data.records.length === 1) {
+                sessionStorage.setItem("user", response.data.records[0].id);
+                $location.url("/main");
+            } else {
+                alert("Podano błędny email lub hasło");
+            }
         });
-
-        console.log("bababababba");
-        $.get("http://v-ie.uek.krakow.pl/~s187805/WpolDoKotleta/test.php", function(data) {
-            var response = data;
-            //if(response == "Podano błędne hasło lub email") {
-                console.log(response);
-            //} else {
-            //    sessionStorage.setItem("email", response);
-            //}
-        })
     }
-
-    $scope.add = function(recipe) {
-        console.log(recipe);
+    $scope.addToFav = function(n, d) {
+        var recipeName = n;
+        var user = sessionStorage.getItem("user");
+        if(user != null) {
+            var name = JSON.stringify({name: recipeName, id: user});
+            $http.post('ulubione.php', name).then(function(odp) {
+                if (odp.data === true) {
+                    alert("Dodano do ulubionych!")
+                } else {
+                    alert("Coś poszło nie tak, spróbuj jeszcze raz");
+                }
+            });
+        } else {
+            alert("Zaloguj się, aby dodać przepis do ulubionych");
+        }
     }
-
+    $scope.fav = function() {
+        var userId = sessionStorage.getItem("user");
+        if (userId != null) {
+            var user = JSON.stringify({id: userId});
+            $http.post('wyswietlUlubione.php', user).then(function(result) {
+                if (result.data.records.length > 0) {
+                    $scope.ulubione = result.data.records;
+                } else {
+                    alert("Brak ulubionych przepisów");
+                }
+            });
+        } else {
+            $location.url("/zalogujSie");
+        }
+    }
+    $scope.search = function(e) {
+        var name = e;
+        $http.get(url + '&query=' + name + '&key=' + apiKey).then(function(response) {
+            $scope.desc = response.data.cards[0].desc;
+        });
+    }
     $scope.addToMenu = function(recipe) {
         var przepis = recipe;
         if (sessionStorage.getItem("infiniteScrollEnabled") === null) {

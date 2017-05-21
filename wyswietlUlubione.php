@@ -5,14 +5,12 @@
     $data = json_decode(file_get_contents("php://input"));
 
     $conn = new mysqli("sbazy.uek.krakow.pl", "s187772", "xZL2WCBM", "s187772");
-    $result = $conn->query("SELECT * FROM spa_users WHERE email = '$data->user' AND password = '$data->pass'");
+    $result = $conn->query("SELECT name FROM spa_favourites WHERE user_id = '$data->id'");
 
     $outp = "";
     while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
         if ($outp != "") {$outp .= ",";}
-        $outp .= '{"id":"'  . $rs["id"] . '",';
-        $outp .= '"email":"'. $rs["email"]     . '",';
-        $outp .= '"password":"'. $rs["password"]     . '"}';
+        $outp .= '{"name":"'  . $rs["name"] . '"}';
     }
     $outp ='{"records":['.$outp.']}';
     $conn->close();
